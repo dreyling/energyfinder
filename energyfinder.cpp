@@ -19,9 +19,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-using namespace std;
 energyfinder::energyfinder(double theta1, double theta2, double IBRM): xout(),thetaout(), theta(), bfield({0}), zcoord({0}){
-
+using namespace std;
   I=IBRM;
   pGeV=1;
   xin=0.;
@@ -32,8 +31,10 @@ energyfinder::energyfinder(double theta1, double theta2, double IBRM): xout(),th
   dp=0.00001;
 }
 
-double energyfinder::getenergy(){
 
+
+double energyfinder::getenergy(){
+using namespace std;
   double plow=0.5;
   double phigh=7.;
   double thetalow;
@@ -59,6 +60,7 @@ double energyfinder::getenergy(){
   return(pGeV);
 }
 double energyfinder::geterrplus(double errin, double errout){
+using namespace std;
   double plow=0.5;
   double phigh=7.;
   double thetalow;
@@ -114,6 +116,7 @@ return(p2-p3);
 
 
 double energyfinder::geterrminus(double errin, double errout){
+using namespace std;
   double plow=0.5;
   double phigh=7.;
   double thetalow;
@@ -167,8 +170,45 @@ return(p3-p2);
  }
 }
 
+void energyfinder::setI(double x){
+  I=x;
+  return;
+}
+
+void energyfinder::setthetain(double x){  
+  thetain=x;
+  return;
+  }
+
+void energyfinder::setthetaout(double x){
+  theta=x;
+  return;
+}
+
+void energyfinder::setdp(double x){
+  dp=x;
+  return;
+}
+
+
+void energyfinder::setdx(double x){
+  dx=x;
+  return;
+  }
+
+
+double energyfinder::getdeltax(double z, double E){
+  zend=zend+z;
+  pGeV=E;
+  energyfinder::deflection();
+  zend=zend-z;
+  return(xout);
+  }
+
+
 //////////////////////////// the following methods are based on some code from Paul Schuetz////////
 void  energyfinder::deflection(){
+using namespace std;
     const double c=299792458.;
     const double pi=3.14159265359;
     const double q=1.6e-19;
@@ -244,6 +284,7 @@ void  energyfinder::deflection(){
 }
 
 double energyfinder::evalB(int n, double z){
+using namespace std;
 
   int i=0;
     double b;
@@ -279,6 +320,7 @@ double energyfinder::evalB(int n, double z){
 }
 
 void energyfinder::bMap(double I, double *bcurr, double *zcoord){
+using namespace std;
 
  ifstream inp;
     ofstream outp;

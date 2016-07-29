@@ -14,6 +14,15 @@ class energyfinder{
   double getenergy();
   double geterrplus(double errin, double errout);
   double geterrminus(double errin, double errout);
+  double getI(){return(I);}
+  void setI(double x);
+  double getthetain(){return(thetain);}
+  void setthetain(double x);
+  double getthetaout(){return(theta);}
+  void  setthetaout(double x);
+  void setdp(double x);
+  void setdx(double x);
+  double getdeltax(double z, double E);
 
  private:
  void  deflection();
